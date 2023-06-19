@@ -1,4 +1,4 @@
 package framework.party;
 
-public interface IOrganization  {
+public interface IOrganization extends IParty {
 }
