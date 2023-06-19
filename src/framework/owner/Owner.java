@@ -2,13 +2,22 @@ package framework.owner;
 
 import framework.account.IAccount;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Users observer pattern to notify accounts(observers) to
+ * add interest
+ */
 public abstract class Owner {
-
     private static String name = "CompanyX";
     private static String email = "companyx@gmail.com";
-    private static List<IAccount> accounts;
+    private static String accountNumPrexi = "Cx";
+
+    /**
+     * List of observers
+     */
+    private static List<IAccount> accounts = new ArrayList<>();
 
     public static String getName() {
         return name;
@@ -26,21 +35,35 @@ public abstract class Owner {
         Owner.email = email;
     }
 
-    public void addAccount(IAccount account) {
+    public static String getNextAccountNumber(){
+        return accountNumPrexi + " " + accounts.size() + 1;
+    }
+
+    public static List<IAccount> getAccounts() {
+        return accounts;
+    }
+
+    /**
+     * Serves to add observers
+     * @param account
+     */
+    public static void addAccount(IAccount account) {
         accounts.add(account);
     }
 
     /**
      * Notify all accounts to apply interest
      */
-    public void applyInterest(){
+    public static void notifyApplyInterest(){
+        System.out.println("Broadcasting to all system accounts to add individual interests.");
+
+        int count = 0;
+
         for (IAccount account : accounts){
             account.addInterest();
+            count++;
         }
+
+        System.out.println(count + " accounts applied interest.");
     }
-
-
-
-
-
 }
