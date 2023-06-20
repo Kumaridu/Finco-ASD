@@ -1,7 +1,7 @@
 package framework.party;
 import java.time.LocalDate;
 
-public abstract class PartyCreator {
+public class PartyCreator {
 
     /**
      * Creates a new IPerson object

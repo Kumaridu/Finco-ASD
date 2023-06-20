@@ -1,6 +1,6 @@
 package framework;
-import javax.swing.*;
 
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,16 +10,14 @@ public class Main {
 
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
 
-            //Create a new instance of our application's frame, and make it visible.
+            // Create a new instance of our application's frame, and make it visible.
             (new AppWindow()).setVisible(true);
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             t.printStackTrace();
-            //Ensure the application exits with an error condition.
+            // Ensure the application exits with an error condition.
             System.exit(1);
         }
     }
