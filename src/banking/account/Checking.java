@@ -8,4 +8,9 @@ public class Checking extends BankAccount {
         super(balance, accountOwner);
     }
 
+    @Override
+    public Double getInterestRate() {
+        return BankAccount.CHECKING_INTEREST_RATE;
+    }
+
 }
