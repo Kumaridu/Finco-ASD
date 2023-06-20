@@ -12,20 +12,23 @@ public abstract class Party implements IParty {
     private String city;
     private String state;
     private String zip;
+    private String email;
     private List<IAccount> accounts = new ArrayList<>();
 
     /**
-     *
+     * Create a new Party object
      * @param name
      * @param street
      * @param city
      * @param zip
+     * @param email
      */
-    public Party(String name, String street, String city, String zip) {
+    public Party(String name, String street, String city, String zip, String email) {
         this.name = name;
         this.street = street;
         this.city = city;
         this.zip = zip;
+        this.email = email;
     }
 
 
@@ -60,4 +63,8 @@ public abstract class Party implements IParty {
     }
     @Override
     public abstract void sendEmail(ITransaction transaction);
+
+    public String getEmail() {
+        return email;
+    }
 }

@@ -10,10 +10,11 @@ public abstract class PartyCreator {
      * @param city
      * @param zip
      * @param dateOfBirth
+     * @param email
      * @return
      */
-    public static IPerson createPerson(String name, String street, String city, String zip, LocalDate dateOfBirth){
-        return new Person(name, street, city, zip, dateOfBirth);
+    public static IPerson createPerson(String name, String street, String city, String zip, String email, LocalDate dateOfBirth){
+        return new Person(name, street, city, zip, email, dateOfBirth);
     }
 
     /**
@@ -23,9 +24,10 @@ public abstract class PartyCreator {
      * @param city
      * @param zip
      * @param numOfEmployees
+     * @param email
      * @return
      */
-    public static IOrganization  createOrganization(String name, String street, String city, String zip, int numOfEmployees) {
-        return new Organization(name, street, city, zip, numOfEmployees);
+    public static IOrganization  createOrganization(String name, String street, String city, String zip, String email, int numOfEmployees) {
+        return new Organization(name, street, city, zip, email, numOfEmployees);
     }
 }

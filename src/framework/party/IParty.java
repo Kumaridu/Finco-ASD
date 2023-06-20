@@ -7,4 +7,5 @@ public interface IParty {
     void addAccount(IAccount account);
     void removeAccount(IAccount account);
     void sendEmail(ITransaction transaction);
+    String getEmail();
 }

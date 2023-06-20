@@ -3,6 +3,7 @@ package framework.account;
 import framework.owner.Owner;
 import framework.party.IParty;
 import framework.transaction.ITransaction;
+import framework.transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,16 @@ public abstract class Account implements IAccount {
     private final String accountNum;
     private final List<ITransaction> transactions = new ArrayList<>();
 
-    public Account(Double balance, IParty accountOwner){
-        this.balance = balance;
-        this.accountNum = Owner.getNextAccountNumber();
-        this.accountOwner = accountOwner;
-        this.accountOwner.addAccount(this);
-        Owner.addAccount(this);
+    public Account(Double balance, IParty accountOwner) {
+        try {
+            this.accountNum = Owner.getNextAccountNumber();
+            this.accountOwner = accountOwner;
+            this.accountOwner.addAccount(this);
+            Owner.addAccount(this);
+            this.addTransaction("New Account Deposit", balance);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getAccountNum() {
@@ -31,7 +36,9 @@ public abstract class Account implements IAccount {
     }
 
     @Override
-    public void addTransaction(ITransaction transaction) throws Exception{
+    public void addTransaction(String name, Double amount) throws Exception{
+        ITransaction transaction = new Transaction(name, amount, this);
+
         if (transaction.getAmount() + this.balance < 0){
             throw new Exception("Debit Transaction amount exceeds account balance.");
         }
@@ -44,6 +51,10 @@ public abstract class Account implements IAccount {
 
     @Override
     public abstract void addInterest();
+
+    public IParty getAccountOwner() {
+        return accountOwner;
+    }
 
     @Override
     public String toString() {

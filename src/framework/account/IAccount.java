@@ -1,8 +1,9 @@
 package framework.account;
-import framework.transaction.ITransaction;
+import framework.party.IParty;
 
 public interface IAccount {
     public Double getBalance();
-    public void addTransaction(ITransaction transaction)  throws Exception;
+    public void addTransaction(String name, Double amount)  throws Exception;
     public void addInterest();
+    public IParty getAccountOwner();
 }
