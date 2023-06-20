@@ -4,7 +4,7 @@ import framework.account.Account;
 
 public abstract class CCAccount extends Account {
     private String expDate;
-    private Double lastMonthBalance=0.0;
+    private Double lastMonthBalance = 0.0;
     public CCAccount(Double balance, IParty accountOwner,String expDate, Double lastMonthBalance) {
         super(balance, accountOwner);
         this.expDate=expDate;

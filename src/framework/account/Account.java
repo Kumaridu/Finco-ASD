@@ -7,6 +7,7 @@ import framework.transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public abstract class Account implements IAccount {
     private Double balance = 0.0;
@@ -54,6 +55,31 @@ public abstract class Account implements IAccount {
 
     public IParty getAccountOwner() {
         return accountOwner;
+    }
+
+    @Override
+    public List<ITransaction> accountCredits() {
+        return transactions((tran) -> tran.getAmount() > 0.0);
+    }
+
+    @Override
+    public List<ITransaction> accountDebits() {
+        return transactions((tran) -> tran.getAmount() < 0.0);
+    }
+
+    public List<ITransaction> getTransactions() {
+        return transactions;
+    }
+
+    private List<ITransaction> transactions(Predicate<ITransaction> predicate){
+        List<ITransaction> trans = new ArrayList<>();
+        for (ITransaction tran : transactions){
+            if (predicate.test(tran)){
+                trans.add(tran);
+            }
+        }
+
+        return trans;
     }
 
     @Override
