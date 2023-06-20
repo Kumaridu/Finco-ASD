@@ -58,20 +58,20 @@ public abstract class Account implements IAccount {
     }
 
     @Override
-    public List<ITransaction> accountCredits() {
-        return transactions((tran) -> tran.getAmount() > 0.0);
+    public List<ITransaction> credits() {
+        return getTransactions((tran) -> tran.getAmount() > 0.0);
     }
 
     @Override
-    public List<ITransaction> accountDebits() {
-        return transactions((tran) -> tran.getAmount() < 0.0);
+    public List<ITransaction> debits() {
+        return getTransactions((tran) -> tran.getAmount() < 0.0);
     }
 
-    public List<ITransaction> getTransactions() {
+    public List<ITransaction> transactions() {
         return transactions;
     }
 
-    private List<ITransaction> transactions(Predicate<ITransaction> predicate){
+    private List<ITransaction> getTransactions(Predicate<ITransaction> predicate){
         List<ITransaction> trans = new ArrayList<>();
         for (ITransaction tran : transactions){
             if (predicate.test(tran)){

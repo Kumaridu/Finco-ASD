@@ -9,7 +9,7 @@ public interface IAccount {
     public void addTransaction(String name, Double amount)  throws Exception;
     public void addInterest();
     public IParty getAccountOwner();
-    public List<ITransaction> accountTransaction();
-    public List<ITransaction> accountCredits();
-    public List<ITransaction> accountDebits();
+    public List<ITransaction> transactions();
+    public List<ITransaction> credits();
+    public List<ITransaction> debits();
 }
