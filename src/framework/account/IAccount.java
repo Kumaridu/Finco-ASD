@@ -1,9 +1,8 @@
 package framework.account;
-
 import framework.transaction.ITransaction;
 
 public interface IAccount {
-    Double getBalance();
-    void addTransaction(ITransaction transaction)  throws Exception;
-    void addInterest();
+    public Double getBalance();
+    public void addTransaction(ITransaction transaction)  throws Exception;
+    public void addInterest();
 }

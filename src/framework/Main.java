@@ -18,7 +18,7 @@ public class Main {
                 LocalDate.of(1990, 6, 19)
         );
 
-        Account acc = new ConcAccount(100.0);
+        Account acc = new ConcAccount(100.0, person);
 
         try {
             acc.addTransaction(new Transaction("Walmat expense", -20.0));
@@ -28,7 +28,7 @@ public class Main {
         }
 
 
-        Account acc2 = new ConcAccount(10.0);
+        Account acc2 = new ConcAccount(10.0, person);
 
         try {
             acc2.addTransaction(new Transaction("Walmat expense", -20.0));
@@ -36,10 +36,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        person.addAccount(acc);
-        person.addAccount(acc2);
-        Owner.addAccount(acc);
-        Owner.addAccount(acc2);
 
         Owner.notifyApplyInterest();
 

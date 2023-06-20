@@ -1,6 +1,7 @@
 package framework.account;
 
 import framework.owner.Owner;
+import framework.party.IParty;
 import framework.transaction.ITransaction;
 
 import java.util.ArrayList;
@@ -8,12 +9,16 @@ import java.util.List;
 
 public abstract class Account implements IAccount {
     private Double balance = 0.0;
-    private String accountNum;
-    private List<ITransaction> transactions = new ArrayList<>();
+    private final IParty accountOwner;
+    private final String accountNum;
+    private final List<ITransaction> transactions = new ArrayList<>();
 
-    public Account(Double balance){
+    public Account(Double balance, IParty accountOwner){
         this.balance = balance;
         this.accountNum = Owner.getNextAccountNumber();
+        this.accountOwner = accountOwner;
+        this.accountOwner.addAccount(this);
+        Owner.addAccount(this);
     }
 
     public String getAccountNum() {
@@ -28,12 +33,13 @@ public abstract class Account implements IAccount {
     @Override
     public void addTransaction(ITransaction transaction) throws Exception{
         if (transaction.getAmount() + this.balance < 0){
-            throw new Exception("Transaction amount more exceeds account balance.");
+            throw new Exception("Debit Transaction amount exceeds account balance.");
         }
 
         this.balance += transaction.getAmount();
 
         this.transactions.add(transaction);
+        this.accountOwner.sendEmail(transaction);
     }
 
     @Override
