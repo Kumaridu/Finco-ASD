@@ -1,7 +1,7 @@
 package framework.party;
 import framework.owner.Owner;
-import framework.services.Email;
-import framework.services.EmailService;
+import framework.utilities.Email;
+import framework.utilities.Utility;
 import framework.transaction.ITransaction;
 
 public class Organization extends Party implements IOrganization {
@@ -27,7 +27,7 @@ public class Organization extends Party implements IOrganization {
 
     @Override
     public void sendEmail(ITransaction transaction) {
-        EmailService.sendEmail(
+        Utility.sendEmail(
                 new Email("New Transaction", Owner.getEmail(), transaction.getAccount().getAccountOwner().getEmail(), transaction.toString())
         );
     }
