@@ -1,4 +1,4 @@
-package framework.services;
+package framework.utilities;
 
 public class Email {
     private final String sender;
