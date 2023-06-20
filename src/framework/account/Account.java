@@ -35,6 +35,10 @@ public abstract class Account implements IAccount {
         return balance;
     }
 
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
     @Override
     public void addTransaction(String name, Double amount) throws Exception{
         ITransaction transaction = new Transaction(name, amount, this);
