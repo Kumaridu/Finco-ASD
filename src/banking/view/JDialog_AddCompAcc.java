@@ -47,6 +47,7 @@ public class JDialog_AddCompAcc extends JDialog_AddAccount
 		JLabel6.setForeground(java.awt.Color.black);
 		JLabel6.setBounds(12,216,96,24);
 
+		JTextField_AccNum.setEnabled(false);
 		getContentPane().add(JTextField_AccNum);
 		JTextField_AccNum.setBounds(120,72,156,20);
 		JTextField_AccNum.setText(Owner.getNextAccountNumber());
