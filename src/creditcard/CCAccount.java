@@ -2,6 +2,7 @@ package creditcard;
 
 import framework.account.Account;
 import framework.party.IParty;
+import framework.transaction.ITransaction;
 
 import java.time.LocalDate;
 
@@ -15,13 +16,32 @@ public abstract class CCAccount extends Account {
         this.lastMonthBalance = 0.0;
     }
     public Double getLastMonthBalance(){
+        for(ITransaction accountTransaction:this.transactions()){
+
+            if (accountTransaction.getDate().isBefore(expDate.withDayOfMonth(1))) {
+                lastMonthBalance += accountTransaction.getAmount();
+            }
+        }
         return lastMonthBalance;
+
     }
     public Double totalMonthlyCredits(){
-        return 0.0;
+        Double monthlyCredits=0.0;
+        for(ITransaction accountTransaction:this.debits()){
+            if (accountTransaction.getDate().isBefore(expDate.withDayOfMonth(1))) {
+                monthlyCredits += accountTransaction.getAmount();
+            }
+        }
+        return monthlyCredits;
     }
     public Double totalMonthlyCharges(){
-        return 0.0;
+        Double monthlyCharges=0.0;
+        for(ITransaction accountTransaction:this.credits()){
+            if (accountTransaction.getDate().isBefore(expDate.withDayOfMonth(1))) {
+                monthlyCharges += accountTransaction.getAmount();
+            }
+        }
+        return monthlyCredits;
     }
 
     public abstract Double getNewMonthlybalance();
