@@ -11,7 +11,7 @@ public class Response {
 
     public Response(Boolean success, String message){
         this.message = message;
-        success = success;
+        this.success = success;
     }
 
     public boolean isSuccess() {

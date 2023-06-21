@@ -1,6 +1,5 @@
 package framework.gui;
-
-import banking.controllers.BankController;
+import framework.account.IAccount;
 import framework.controllers.BaseController;
 import framework.utilities.Response;
 
@@ -108,7 +107,6 @@ public abstract class MainWindow extends javax.swing.JFrame{
 
     public abstract String getDebitButtonTitle();
 
-
     javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
     javax.swing.JButton JButton_Exit = new javax.swing.JButton();
     javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
@@ -118,6 +116,10 @@ public abstract class MainWindow extends javax.swing.JFrame{
     void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
     {
         JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
+        BaseController.applyInterest();
+        List<IAccount> accounts = BaseController.allCounts();
+        System.out.println(accounts.toString());
+        updateAcountsBalances(accounts);
     }
 
     public void addExtraButton(JButton button){
@@ -278,6 +280,12 @@ public abstract class MainWindow extends javax.swing.JFrame{
         model.addRow(rowdata);
         JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
         newaccount=false;
+    }
+
+    public void updateAcountsBalances(List<IAccount> accounts){
+        for (int i = 0; i < accounts.size(); i++){
+            model.setValueAt(String.valueOf(accounts.get(i).getBalance()), i, this.getTableColumns().size() - 1);
+        }
     }
 
     void exitApplication()

@@ -13,7 +13,8 @@ public class PartyCreator {
      * @param email
      * @return
      */
-    public static IPerson createPerson(String name, String street, String city, String zip, String email, LocalDate dateOfBirth){
+    public static IPerson createParty(String name, String street, String city, String zip, String email, LocalDate dateOfBirth){
+        System.out.println("Creating a Person.");
         return new Person(name, street, city, zip, email, dateOfBirth);
     }
 
@@ -27,7 +28,8 @@ public class PartyCreator {
      * @param email
      * @return
      */
-    public static IOrganization  createOrganization(String name, String street, String city, String zip, String email, int numOfEmployees) {
+    public static IOrganization  createParty(String name, String street, String city, String zip, String email, int numOfEmployees) {
+        System.out.println("Creating an organization.");
         return new Organization(name, street, city, zip, email, numOfEmployees);
     }
 }
