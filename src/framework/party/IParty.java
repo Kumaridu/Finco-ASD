@@ -8,4 +8,13 @@ public interface IParty {
     void removeAccount(IAccount account);
     void sendEmail(ITransaction transaction);
     String getEmail();
+    public String getName();
+
+    public String getStreet();
+
+    public String getCity();
+
+    public String getState();
+
+    public String getZip();
 }
