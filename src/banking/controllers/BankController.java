@@ -1,6 +1,6 @@
 package banking.controllers;
 
-import banking.AccountCreator;
+import banking.models.AccountCreator;
 import framework.owner.Owner;
 import framework.party.IParty;
 import framework.party.PartyCreator;

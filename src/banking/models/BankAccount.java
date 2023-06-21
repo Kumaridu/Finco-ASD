@@ -1,4 +1,4 @@
-package banking;
+package banking.models;
 
 import framework.account.Account;
 import framework.party.IParty;

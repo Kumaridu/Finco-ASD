@@ -1,5 +1,6 @@
-package banking;
+package banking.models;
 
+import banking.models.BankAccount;
 import framework.party.IParty;
 
 public class Saving extends BankAccount {
