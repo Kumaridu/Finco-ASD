@@ -1,12 +1,21 @@
+package framework.view;
+
+import framework.gui.JDialog_AddAccount;
+import framework.gui.MainWindow;
+
 public class JDialog_AddCompAcc extends JDialog_AddAccount
 {
-    private MainFrm parentframe;
 	javax.swing.JTextField JTextField_NoOfEmp = new javax.swing.JTextField();
+	javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
+	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
+	javax.swing.JLabel JLabel6 = new javax.swing.JLabel();
+
+	private MainWindow mainWindow;
     
-	public JDialog_AddCompAcc(MainFrm parent)
+	public JDialog_AddCompAcc(MainWindow mainWindow)
 	{
-		super(parent, "Add Company Account");
-		parentframe = parent;
+		super(mainWindow,"Add Company Account");
+		this.mainWindow = mainWindow;
 
 		setupPrivateComponents();
 	}
@@ -28,18 +37,18 @@ public class JDialog_AddCompAcc extends JDialog_AddAccount
 
 		getContentPane().add(JTextField_NoOfEmp);
 		JTextField_NoOfEmp.setBounds(120,216,156,20);
-
 	}
-
 	javax.swing.JTextField JTextField_ACNR = new javax.swing.JTextField();
 
 	@Override
 	public void supplementJButtonOkayAP() {
-		parentframe.accountnr =JTextField_ACNR.getText();
+		//Set public variables on main window
+
+		mainWindow.accountnr = JTextField_ACNR.getText();
 
 		if (JRadioButton_Chk.isSelected())
-			parentframe.accountType="Ch";
+			mainWindow.accountType = "Ch";
 		else
-			parentframe.accountType="S";
+			mainWindow.accountType = "S";
 	}
 }

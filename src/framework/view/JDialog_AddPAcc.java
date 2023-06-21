@@ -1,15 +1,16 @@
-/**
-		A basic implementation of the JDialog class.
-**/
+package framework.view;
+
+import framework.gui.JDialog_AddAccount;
+import framework.gui.MainWindow;
 
 public class JDialog_AddPAcc extends JDialog_AddAccount
 {
-    private MainFrm parentframe;
+    private MainWindow parentframe;
     
-	public JDialog_AddPAcc(MainFrm parent)
+	public JDialog_AddPAcc(MainWindow parent)
 	{
-		super(parent, "Add personal account");
-		parentframe=parent;
+		super(parent,"Add personal account");
+		parentframe = parent;
 
 		JRadioButton_Chk.setText("Checkings");
 		JRadioButton_Chk.setActionCommand("Checkings");
@@ -77,7 +78,9 @@ public class JDialog_AddPAcc extends JDialog_AddAccount
 	 
 	}
 
+	@Override
 	public void supplementJButtonOkayAP() {
+		//Set public variables on MainWindow frame
 		parentframe.accountnr=JTextField_ACNR.getText();
 
 		if (JRadioButton_Chk.isSelected())

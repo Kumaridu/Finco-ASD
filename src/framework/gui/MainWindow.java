@@ -10,37 +10,41 @@ public abstract class MainWindow extends javax.swing.JFrame{
     /****
      * init variables in the object
      ****/
-    String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit;
-    boolean newaccount;
+    public String accountnr;
+    public String clientName;
+    String street;
+    public String city;
+    String zip;
+    String state;
+    public String accountType;
+    public String clientType;
+    String amountDeposit;
+    public boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
     private JScrollPane JScrollPane1;
     MainWindow myframe;
     private Object rowdata[];
-    SymAction lSymAction;
-    SymWindow aSymWindow;
+    public SymAction lSymAction;
+    private SymWindow aSymWindow;
 
     private List<String> tableColumns;
 
 
     public MainWindow(String title){
         myframe = this;
-
         setTitle(title);
 
-        setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout(0,0));
-        setSize(576,312);
-        setVisible(false);
-        JPanel1.setLayout(null);
-        getContentPane().add(BorderLayout.CENTER, JPanel1);
-        JPanel1.setBounds(0,0,584,324);
+        aSymWindow = new SymWindow();
+        myframe.addWindowListener(aSymWindow);
+        lSymAction = new SymAction();
 
-        /*
-		/Add five buttons on the pane
-		/for Adding personal account, Adding company account
-		/Deposit, Withdraw and Exit from the system
-		*/
+        this.initializeWindow();
+        this.initializeTable();
+        this.setUpDefaultButtons();
+    }
+
+    private void initializeTable(){
         JScrollPane1 = new JScrollPane();
         model = new DefaultTableModel();
         JTable1 = new JTable(model);
@@ -51,31 +55,68 @@ public abstract class MainWindow extends javax.swing.JFrame{
         JScrollPane1.setBounds(12,92,440,160);
         JScrollPane1.getViewport().add(JTable1);
         JTable1.setBounds(0, 0, 420, 0);
+    }
+    private void initializeWindow(){
+        setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout(0,0));
+        setSize(600,400);
+        setVisible(false);
 
+        JPanel1.setLayout(null);
+        getContentPane().add(BorderLayout.CENTER, JPanel1);
+        JPanel1.setBounds(0,0,584,324);
+    }
+
+    private void setUpDefaultButtons(){
+        this.setupCreditButton();
+        this.setupDebitButton();
+        this.setupInterestButton();
+        this.setupExitButton();
+    }
+
+    private void setupInterestButton(){
         JButton_Addinterest.setText("Add interest");
         JPanel1.add(JButton_Addinterest);
         JButton_Addinterest.setBounds(448,20,106,33);
-
+        JButton_Addinterest.addActionListener(lSymAction);
+    }
+    private void setupExitButton(){
         JButton_Exit.setText("Exit");
         JPanel1.add(JButton_Exit);
         JButton_Exit.setBounds(468,248,96,30);
-
-        aSymWindow = new SymWindow();
-        this.addWindowListener(aSymWindow);
-        lSymAction = new SymAction();
-
         JButton_Exit.addActionListener(lSymAction);
-        JButton_Addinterest.addActionListener(lSymAction);
     }
+    private void setupCreditButton(){
+        JButton_Credit.setText(this.getCreditButtonTitle());
+        JPanel1.add(JButton_Credit);
+        JButton_Credit.setBounds(468,104,96,33);
+        JButton_Credit.addActionListener(lSymAction);
+    }
+    public abstract String getCreditButtonTitle();
+
+    private void setupDebitButton(){
+        JButton_Debit.setText(this.getDebitButtonTitle());
+        JPanel1.add(JButton_Debit);
+        JButton_Debit.setBounds(468,164,96,34);
+        JButton_Debit.addActionListener(lSymAction);
+    }
+
+    public abstract String getDebitButtonTitle();
+
 
     javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
     javax.swing.JButton JButton_Exit = new javax.swing.JButton();
     javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
+    javax.swing.JButton JButton_Credit = new javax.swing.JButton();
+    javax.swing.JButton JButton_Debit = new javax.swing.JButton();
 
     void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
     {
         JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
+    }
 
+    public void addExtraButton(JButton button){
+        JPanel1.add(button);
     }
 
     public List<String> getTableColumns() {
@@ -111,17 +152,26 @@ public abstract class MainWindow extends javax.swing.JFrame{
                 return;
             }
 
-            else if (object == JButton_Addinterest){
+            if (object == JButton_Addinterest){
                 JButtonAddinterest_actionPerformed(event);
                 return;
             }
 
-            ALAPSub(event);
+            if (object == JButton_Credit){
+                JButtonCredit_actionPerformed(event);
+                return;
+            }
 
+            if (object == JButton_Debit){
+                JButtonDebit_actionPerformed(event);
+                return;
+            }
+
+            subActionsPerformed(event);
         }
     }
 
-    public abstract void ALAPSub(java.awt.event.ActionEvent event);
+    public abstract void subActionsPerformed(java.awt.event.ActionEvent event);
 
     void JButtonExit_actionPerformed(java.awt.event.ActionEvent event)
     {
@@ -140,8 +190,6 @@ public abstract class MainWindow extends javax.swing.JFrame{
 
     void MainFrm_windowClosing(java.awt.event.WindowEvent event)
     {
-        // to do: code goes here.
-
         MainFrm_windowClosing_Interaction1(event);
     }
 
@@ -152,7 +200,7 @@ public abstract class MainWindow extends javax.swing.JFrame{
         }
     }
 
-    void JButtonCredit_actionPerformed(java.awt.event.ActionEvent event, String title)
+    void JButtonCredit_actionPerformed(java.awt.event.ActionEvent event)
     {
         // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
@@ -160,7 +208,7 @@ public abstract class MainWindow extends javax.swing.JFrame{
             String accnr = (String)model.getValueAt(selection, 0);
 
             //Show the dialog for adding deposit amount for the current mane
-            JDialog_AddEntry dep = new JDialog_AddEntry(myframe,accnr, title);
+            JDialog_AddEntry dep = new JDialog_AddEntry(myframe,accnr, this.getCreditButtonTitle());
             dep.setBounds(430, 15, 275, 140);
             dep.show();
 
@@ -175,7 +223,7 @@ public abstract class MainWindow extends javax.swing.JFrame{
 
     }
 
-    void JButtonDebit_actionPerformed(java.awt.event.ActionEvent event, String title)
+    void JButtonDebit_actionPerformed(java.awt.event.ActionEvent event)
     {
         // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
@@ -183,7 +231,7 @@ public abstract class MainWindow extends javax.swing.JFrame{
             String accnr = (String)model.getValueAt(selection, 0);
 
             //Show the dialog for adding withdraw amount for the current mane
-            JDialog_AddEntry wd = new JDialog_AddEntry(myframe, accnr, title);
+            JDialog_AddEntry wd = new JDialog_AddEntry(myframe, accnr, this.getDebitButtonTitle());
             wd.setBounds(430, 15, 275, 140);
             wd.show();
 

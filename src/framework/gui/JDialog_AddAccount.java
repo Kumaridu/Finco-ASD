@@ -4,9 +4,7 @@ public abstract class JDialog_AddAccount extends javax.swing.JDialog {
     private MainWindow parentForm;
     private String title = "Add Account";
 
-    JDialog_AddAccount(MainWindow parentForm, String title){
-        super(parentForm);
-
+    public JDialog_AddAccount(MainWindow parentForm, String title){
         this.title = title;
         this.parentForm = parentForm;
 
@@ -115,11 +113,8 @@ public abstract class JDialog_AddAccount extends javax.swing.JDialog {
     javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
     javax.swing.JLabel JLabel4 = new javax.swing.JLabel();
     javax.swing.JLabel JLabel5 = new javax.swing.JLabel();
-    javax.swing.JLabel JLabel6 = new javax.swing.JLabel();
     javax.swing.JLabel JLabel7 = new javax.swing.JLabel();
 
-    javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
-    javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
     javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_CT = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();

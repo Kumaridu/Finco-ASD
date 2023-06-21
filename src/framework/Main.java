@@ -1,19 +1,19 @@
 package framework;
+import framework.view.AppWindow;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            // Add the following code if you want the Look and Feel
-            // to be set to the Look and Feel of the native system.
-
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {
             }
 
-            // Create a new instance of our application's frame, and make it visible.
+            /**
+             * Load Account Manager Window(View)
+             */
             (new AppWindow()).setVisible(true);
         } catch (Throwable t) {
             t.printStackTrace();
