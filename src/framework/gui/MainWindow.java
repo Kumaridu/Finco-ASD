@@ -1,5 +1,9 @@
 package framework.gui;
 
+import banking.controllers.BankController;
+import framework.controllers.BaseController;
+import framework.utilities.Response;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -214,15 +218,18 @@ public abstract class MainWindow extends javax.swing.JFrame{
             dep.show();
 
             // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
+            Double deposit = Double.parseDouble(amountDeposit);
 
             //get column index for balance/Amount
             int amountColumnIndex = getAmountColumnIndex();
             String samount = (String)model.getValueAt(selection, amountColumnIndex);
-            long currentamount = Long.parseLong(samount);
-            long newamount=currentamount+deposit;
+            Double currentamount = Double.parseDouble(samount);
+            Double newamount = currentamount+deposit;
 
             model.setValueAt(String.valueOf(newamount),selection, amountColumnIndex);
+
+            Response response = BaseController.credit(accnr, deposit);
+            JOptionPane.showMessageDialog(this, response.getMessage());
         }
     }
 
@@ -243,15 +250,22 @@ public abstract class MainWindow extends javax.swing.JFrame{
             int amountColumnIndex = getAmountColumnIndex();
 
             // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
+            Double deposit = Double.parseDouble(amountDeposit);
 
             String samount = (String)model.getValueAt(selection, amountColumnIndex);
-            long currentamount = Long.parseLong(samount);
-            long newamount=currentamount-deposit;
-            model.setValueAt(String.valueOf(newamount),selection, amountColumnIndex);
-            if (newamount <0){
-                JOptionPane.showMessageDialog(this, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
+            Double currentamount = Double.parseDouble(samount);
+
+            if ((currentamount-deposit) < 0){
+                JOptionPane.showMessageDialog(this, " Balance not enough for transaction !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
+                return;
             }
+
+            Double newamount = currentamount-deposit;
+
+            model.setValueAt(String.valueOf(newamount),selection, amountColumnIndex);
+
+            Response response = BaseController.debit(accnr, deposit);
+            JOptionPane.showMessageDialog(this, response.getMessage());
         }
     }
 

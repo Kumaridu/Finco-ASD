@@ -1,6 +1,7 @@
 package framework.owner;
 
 import framework.account.IAccount;
+import framework.utilities.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,16 @@ public abstract class Owner {
      */
     public static void addAccount(IAccount account) {
         accounts.add(account);
+    }
+
+    public static Response updateAccountBalance(String accountNumber, Double amount) {
+        for (IAccount acc : accounts){
+            if (acc.getAccountNum().equals(accountNumber)){
+               return acc.addTransaction("Debit/Credit operation", amount);
+            }
+        }
+
+        return new Response(false, "Account Not Found");
     }
 
     /**

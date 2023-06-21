@@ -1,25 +1,20 @@
 package banking.view;
 
-import banking.BankController;
+import banking.controllers.BankController;
 import framework.gui.MainWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BankWindow extends MainWindow {
-
-    private BankController bankController;
     JButton JButton_PerAC = new javax.swing.JButton();
     JButton JButton_CompAC = new javax.swing.JButton();
 
 
-    public BankWindow(BankController bankController) {
+    public BankWindow() {
         super("Bank");
-        this.bankController = bankController;
         this.setUpAddAccountsButtons();
     }
 
@@ -97,7 +92,7 @@ public class BankWindow extends MainWindow {
         if (newaccount) {
             String dateOfBirthSt = pac.JTextField_BD.getText();
             String[] data = {accountnr, clientName, street , city, state, zip, "P", accountType, "0"};
-            bankController.createPersonalAccount(clientName, street, city, zip, email, dateOfBirthSt, accountType);
+            BankController.createPersonalAccount(clientName, street, city, zip, email, dateOfBirthSt, accountType);
             this.populateTable(data);
         }
 
@@ -117,7 +112,7 @@ public class BankWindow extends MainWindow {
 
         if (newaccount) {
             String[] data = {accountnr, clientName, street , city, state, zip, "Ch", accountType, "0"};
-            bankController.createCompanyAccount(clientName, street, city, zip, email, noOfEmp, accountType);
+            BankController.createCompanyAccount(clientName, street, city, zip, email, noOfEmp, accountType);
             this.populateTable(data);
         }
 

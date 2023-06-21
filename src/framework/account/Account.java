@@ -4,6 +4,7 @@ import framework.owner.Owner;
 import framework.party.IParty;
 import framework.transaction.ITransaction;
 import framework.transaction.Transaction;
+import framework.utilities.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,17 +42,19 @@ public abstract class Account implements IAccount {
     }
 
     @Override
-    public void addTransaction(String name, Double amount) throws Exception{
+    public Response addTransaction(String name, Double amount){
         ITransaction transaction = new Transaction(name, amount, this);
 
         if (transaction.getAmount() + this.balance < 0){
-            throw new Exception("Debit Transaction amount exceeds account balance.");
+            return new Response(false, "Debit Transaction amount exceeds account balance.");
         }
 
         this.balance += transaction.getAmount();
 
         this.transactions.add(transaction);
         this.accountOwner.sendEmail(transaction);
+
+        return new Response(true, "Transaction Successfull.");
     }
 
     @Override

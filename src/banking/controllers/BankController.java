@@ -1,15 +1,17 @@
-package banking;
+package banking.controllers;
 
+import banking.AccountCreator;
 import framework.owner.Owner;
 import framework.party.IParty;
 import framework.party.PartyCreator;
+import framework.utilities.Response;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class BankController {
 
-    public void createPersonalAccount(String clientName, String street, String city, String zip,
+    public static void createPersonalAccount(String clientName, String street, String city, String zip,
                                  String email, String dateOfBirthSt, String accountType) {
 
         System.out.println("Adding new Personal Account");
@@ -26,7 +28,7 @@ public class BankController {
         System.out.println("After adding new personal account, owner account size: " + Owner.getAccounts().size());
     }
 
-    public void createCompanyAccount(String clientName, String street, String city, String zip,
+    public static void createCompanyAccount(String clientName, String street, String city, String zip,
                            String email, int noOfEmp , String accountType) {
 
         System.out.println("Adding new company account");
@@ -42,11 +44,11 @@ public class BankController {
         System.out.println("After adding new company account ,owner account size: " + Owner.getAccounts().size());
     }
 
-    public void depositMoney() {
+    public static void depositMoney(String accountNumber, Double amount) {
 
     }
 
-    public void withdrawalMoney() {
-
+    public static Response withdrawalMoney(String accountNumber, Double amount) {
+        return new Response(false, "Error");
     }
 }
