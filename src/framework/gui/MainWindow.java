@@ -115,8 +115,7 @@ public abstract class MainWindow extends javax.swing.JFrame{
     javax.swing.JButton JButton_Credit = new javax.swing.JButton();
     javax.swing.JButton JButton_Debit = new javax.swing.JButton();
 
-    void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
-    {
+    void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event) {
         JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
     }
 

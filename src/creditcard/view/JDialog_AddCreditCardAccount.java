@@ -2,11 +2,22 @@ package creditcard.view;
 
 import framework.gui.JDialog_AddAccount;
 import framework.gui.MainWindow;
+import framework.owner.Owner;
+
+import javax.swing.*;
 
 public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
-    private javax.swing.JRadioButton JRadioButton_Gold = new javax.swing.JRadioButton();
-    private javax.swing.JRadioButton JRadioButton_Silver = new javax.swing.JRadioButton();
-    private javax.swing.JRadioButton JRadioButton_Bronze = new javax.swing.JRadioButton();
+    private JRadioButton JRadioButton_Gold = new JRadioButton();
+    private JRadioButton JRadioButton_Silver = new JRadioButton();
+    private JRadioButton JRadioButton_Bronze = new JRadioButton();
+
+    JLabel ccNumberLabel = new JLabel();
+    JLabel expDateLabel = new JLabel();
+    JLabel emailLabel = new JLabel();
+
+    JTextField JTextField_CCNR = new JTextField();
+    JTextField JTextField_ExpDate = new JTextField();
+    JTextField JTextField_Email = new JTextField();
 
     MainWindow mainWindow;
 
@@ -31,6 +42,7 @@ public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
         JRadioButton_Gold.setActionCommand("Checkings");
         getContentPane().add(JRadioButton_Gold);
         JRadioButton_Gold.setBounds(36,12,84,24);
+
         JRadioButton_Silver.setText("Silver");
         JRadioButton_Silver.setActionCommand("Savings");
         getContentPane().add(JRadioButton_Silver);
@@ -40,6 +52,24 @@ public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
         JRadioButton_Bronze.setActionCommand("Savings");
         getContentPane().add(JRadioButton_Bronze);
         JRadioButton_Bronze.setBounds(36,60,84,24);
+
+        ccNumberLabel.setText("CC number");
+        getContentPane().add(ccNumberLabel);
+        ccNumberLabel.setForeground(java.awt.Color.black);
+        ccNumberLabel.setBounds(12,216,96,24);
+
+        getContentPane().add(JTextField_CCNR);
+        JTextField_CCNR.setBounds(120,216,156,20);
+        JTextField_CCNR.setText(Owner.getNextAccountNumber());
+//
+//
+//        expDateLabel.setText("Exp. Date");
+//        getContentPane().add(expDateLabel);
+//        expDateLabel.setForeground(java.awt.Color.black);
+//        expDateLabel.setBounds(12,226,72,24);
+//
+//        getContentPane().add(JTextField_ExpDate);
+//        JTextField_ExpDate.setBounds(120,256,156,20);
     }
 
     class SymMouse extends java.awt.event.MouseAdapter
@@ -80,6 +110,9 @@ public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
 
     @Override
     public void supplementJButtonOkayAP() {
+        mainWindow.accountnr = ccNumberLabel.getText();
+
+
         if (JRadioButton_Gold.isSelected())
             mainWindow.accountType="Gold";
         else{

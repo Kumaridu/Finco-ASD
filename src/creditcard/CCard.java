@@ -4,7 +4,7 @@ import creditcard.view.CreditCardMainWindow;
 
 import javax.swing.*;
 
-public class Main {
+public class CCard {
     public static void main(String[] args) {
         try {
             try {

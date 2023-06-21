@@ -1,7 +1,5 @@
 package banking.models;
 
-import banking.models.Checking;
-import banking.models.Saving;
 import framework.party.IParty;
 
 public class AccountCreator {

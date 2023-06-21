@@ -45,7 +45,6 @@ public class CreditCardMainWindow extends MainWindow {
             JButtonAddAccount_actionPerformed(event);
             return;
         }
-
     }
 
     @Override
@@ -79,6 +78,8 @@ public class CreditCardMainWindow extends MainWindow {
             String[] data = {accountnr, clientName, city, "P", accountType, "0"};
             this.populateTable(data);
         }
+
+
     }
 
 }
