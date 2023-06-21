@@ -54,7 +54,7 @@ public abstract class Account implements IAccount {
         this.transactions.add(transaction);
         this.accountOwner.sendEmail(transaction);
 
-        return new Response(true, "Transaction Successfull.");
+        return new Response(true, "Transaction Successful!");
     }
 
     @Override

@@ -1,5 +1,4 @@
 package banking.view;
-
 import framework.gui.JDialog_AddAccount;
 import framework.gui.MainWindow;
 import framework.owner.Owner;

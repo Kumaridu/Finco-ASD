@@ -1,5 +1,4 @@
 package banking.view;
-
 import banking.controllers.BankController;
 import framework.gui.MainWindow;
 
@@ -55,7 +54,6 @@ public class BankWindow extends MainWindow {
 
         if (object == JButton_CompAC){
             JButtonCompAC_actionPerformed(event);
-            return;
         }
     }
 
@@ -92,7 +90,7 @@ public class BankWindow extends MainWindow {
         if (newaccount) {
             String dateOfBirthSt = pac.JTextField_BD.getText();
             String[] data = {accountnr, clientName, street , city, state, zip, "P", accountType, "0"};
-            BankController.createPersonalAccount(clientName, street, city, zip, email, dateOfBirthSt, accountType);
+            BankController.createAccount(clientName, street, city, zip, email, dateOfBirthSt, accountType);
             this.populateTable(data);
         }
 
@@ -111,11 +109,9 @@ public class BankWindow extends MainWindow {
         int noOfEmp = Integer.parseInt(pac.JTextField_NoOfEmp.getText());
 
         if (newaccount) {
-            String[] data = {accountnr, clientName, street , city, state, zip, "Ch", accountType, "0"};
-            BankController.createCompanyAccount(clientName, street, city, zip, email, noOfEmp, accountType);
+            String[] data = {accountnr, clientName, street , city, state, zip, "C", accountType, "0"};
+            BankController.createAccount(clientName, street, city, zip, email, noOfEmp, accountType);
             this.populateTable(data);
         }
-
-
     }
 }

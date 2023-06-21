@@ -1,5 +1,4 @@
 package banking.view;
-
 import framework.gui.JDialog_AddAccount;
 import framework.gui.MainWindow;
 import framework.owner.Owner;
@@ -32,6 +31,7 @@ public class JDialog_AddCompAcc extends JDialog_AddAccount
 		JRadioButton_Chk.setActionCommand("Checkings");
 		getContentPane().add(JRadioButton_Chk);
 		JRadioButton_Chk.setBounds(36,12,84,24);
+
 		JRadioButton_Sav.setText("Savings");
 		JRadioButton_Sav.setActionCommand("Savings");
 		getContentPane().add(JRadioButton_Sav);

@@ -1,6 +1,7 @@
 package creditcard;
 
 import framework.account.Account;
+import framework.owner.Owner;
 import framework.party.IParty;
 import framework.transaction.ITransaction;
 

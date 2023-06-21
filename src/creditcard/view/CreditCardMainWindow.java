@@ -1,7 +1,9 @@
 package creditcard.view;
 
+import creditcard.controllers.CreditCardController;
 import framework.gui.MainWindow;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +14,12 @@ public class CreditCardMainWindow extends MainWindow {
 
     public CreditCardMainWindow(){
         super("Credit Card Processing Application.");
-
         this.setUpAddAccountsButtons();
+
     }
 
     private void setUpAddAccountsButtons(){
-        JButton_AddAccount.setText("Add personal account");
+        JButton_AddAccount.setText("Add Credit-card account");
         this.addExtraButton(JButton_AddAccount);
         JButton_AddAccount.setBounds(24,20,192,33);
         JButton_AddAccount.setActionCommand("jbutton");
@@ -49,7 +51,12 @@ public class CreditCardMainWindow extends MainWindow {
 
     @Override
     public int getAmountColumnIndex() {
-        return 0;
+        return 4;
+    }
+
+    @Override
+    public int getAccountNumberIndex() {
+        return 1;
     }
 
     @Override
@@ -75,7 +82,10 @@ public class CreditCardMainWindow extends MainWindow {
         pac.show();
 
         if (newaccount){
-            String[] data = {accountnr, clientName, city, "P", accountType, "0"};
+           // String[] data = {accountnr, clientName, city, "P", accountType, "0"};
+            LocalDate mockExpDate = LocalDate.now().plusYears(4);
+            String[] data = {clientName, accountnr, mockExpDate.toString(), accountType, "0"};
+            CreditCardController.createAccount(clientName, street, city, zip, email, accountType);
             this.populateTable(data);
         }
 

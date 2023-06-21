@@ -4,7 +4,6 @@ import framework.account.Account;
 import framework.party.IParty;
 
 public abstract class BankAccount extends Account {
-
     public static Double SAVING_INTEREST_RATE = 0.34;
     public static Double CHECKING_INTEREST_RATE = 0.3232;
 

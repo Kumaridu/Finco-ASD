@@ -48,7 +48,7 @@ public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
         getContentPane().add(JRadioButton_Silver);
         JRadioButton_Silver.setBounds(36,36,84,24);
 
-        JRadioButton_Bronze.setText("Bronze");
+        JRadioButton_Bronze.setText("Copper");
         JRadioButton_Bronze.setActionCommand("Savings");
         getContentPane().add(JRadioButton_Bronze);
         JRadioButton_Bronze.setBounds(36,60,84,24);
@@ -110,7 +110,7 @@ public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
 
     @Override
     public void supplementJButtonOkayAP() {
-        mainWindow.accountnr = ccNumberLabel.getText();
+        mainWindow.accountnr = JTextField_CCNR.getText();
 
 
         if (JRadioButton_Gold.isSelected())
@@ -119,7 +119,7 @@ public class JDialog_AddCreditCardAccount extends JDialog_AddAccount {
             if (JRadioButton_Silver.isSelected())
                 mainWindow.accountType="Silver";
             else
-                mainWindow.accountType="Bronze";
+                mainWindow.accountType="Copper";
         }
     }
 }

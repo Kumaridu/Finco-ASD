@@ -19,6 +19,10 @@ public class Person extends Party implements IPerson {
         this.birthDate = birthDate;
     }
 
+    public Person(String name, String street, String city, String zip, String email) {
+        super(name, street, city, zip, email);
+    }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
