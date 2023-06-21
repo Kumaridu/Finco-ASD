@@ -41,7 +41,7 @@ public abstract class CCAccount extends Account {
                 monthlyCharges += accountTransaction.getAmount();
             }
         }
-        return monthlyCredits;
+        return monthlyCharges;
     }
 
     public abstract Double getNewMonthlybalance();
