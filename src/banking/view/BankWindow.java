@@ -1,21 +1,33 @@
 package banking.view;
 
 
+import banking.account.AccountCreator;
+import banking.account.BankController;
 import framework.gui.MainWindow;
+import framework.party.IParty;
+import framework.party.PartyCreator;
 
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BankWindow extends MainWindow {
+
+    private BankController bankController;
     JButton JButton_PerAC = new javax.swing.JButton();
     JButton JButton_CompAC = new javax.swing.JButton();
 
-    public BankWindow() {
-        super("Bank");
 
+    public BankWindow(BankController bankController) {
+        super("Bank");
+        this.bankController = bankController;
         this.setUpAddAccountsButtons();
     }
+
     private void setUpAddAccountsButtons(){
         JButton_PerAC.setText("Add personal account");
         this.addExtraButton(JButton_PerAC);
@@ -34,12 +46,12 @@ public class BankWindow extends MainWindow {
 
     @Override
     public String getCreditButtonTitle() {
-        return "Credit";
+        return "Deposit";
     }
 
     @Override
     public String getDebitButtonTitle() {
-        return "Debit";
+        return "Withdrawal";
     }
 
     @Override
@@ -57,6 +69,28 @@ public class BankWindow extends MainWindow {
         }
     }
 
+    @Override
+    public int getAmountColumnIndex() {
+        return 8;
+    }
+
+    @Override
+    public List<String> getTableColumns() {
+            List<String> list = new ArrayList<>();
+            list.add("Number");
+            list.add("Name");
+            list.add("Street");
+            list.add("City");
+            list.add("State");
+            list.add("Zip");
+            list.add("P/C");
+            list.add("Ch/S");
+            list.add("Amount");
+
+            return list;
+    }
+
+
     void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event) {
         /**
          * Open customized Add Person Aaccount Dialog
@@ -65,10 +99,14 @@ public class BankWindow extends MainWindow {
         pac.setBounds(450, 20, 300, 330);
         pac.show();
 
-        if (newaccount){
-            String[] data = {accountnr, clientName, city, "P", accountType, "0"};
+        if (newaccount) {
+            String dateOfBirthSt = pac.JTextField_BD.getText();
+            String[] data = {accountnr, clientName, street , city, state, zip, "P", accountType, "0"};
+            bankController.createPersonalAccount(clientName, street, city, zip, email, dateOfBirthSt, accountType);
             this.populateTable(data);
         }
+
+
     }
 
     void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event) {
@@ -80,10 +118,14 @@ public class BankWindow extends MainWindow {
         pac.setBounds(450, 20, 300, 330);
         pac.show();
 
+        int noOfEmp = Integer.parseInt(pac.JTextField_NoOfEmp.getText());
+
         if (newaccount) {
-            String[] data = {accountnr, clientName, city, "P", accountType, "0"};
+            String[] data = {accountnr, clientName, street , city, state, zip, "Ch", accountType, "0"};
+            bankController.createCompanyAccount(clientName, street, city, zip, email, noOfEmp, accountType);
             this.populateTable(data);
         }
+
 
     }
 }

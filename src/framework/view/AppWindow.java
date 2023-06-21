@@ -54,6 +54,11 @@ public class AppWindow extends MainWindow {
         }
     }
 
+    @Override
+    public int getAmountColumnIndex() {
+        return 7;
+    }
+
     void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
     {
         /**

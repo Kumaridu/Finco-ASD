@@ -12,13 +12,14 @@ public abstract class MainWindow extends javax.swing.JFrame{
      ****/
     public String accountnr;
     public String clientName;
-    String street;
+    public String street;
     public String city;
-    String zip;
-    String state;
+    public String zip;
+    public String state;
     public String accountType;
     public String clientType;
-    String amountDeposit;
+    public String amountDeposit;
+    public String email;
     public boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
@@ -200,11 +201,11 @@ public abstract class MainWindow extends javax.swing.JFrame{
         }
     }
 
-    void JButtonCredit_actionPerformed(java.awt.event.ActionEvent event)
-    {
+
+    void JButtonCredit_actionPerformed(java.awt.event.ActionEvent event) {
         // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
-        if (selection >=0){
+        if (selection >= 0){
             String accnr = (String)model.getValueAt(selection, 0);
 
             //Show the dialog for adding deposit amount for the current mane
@@ -214,14 +215,18 @@ public abstract class MainWindow extends javax.swing.JFrame{
 
             // compute new amount
             long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
+
+            //get column index for balance/Amount
+            int amountColumnIndex = getAmountColumnIndex();
+            String samount = (String)model.getValueAt(selection, amountColumnIndex);
             long currentamount = Long.parseLong(samount);
             long newamount=currentamount+deposit;
-            model.setValueAt(String.valueOf(newamount),selection, 5);
+
+            model.setValueAt(String.valueOf(newamount),selection, amountColumnIndex);
         }
-
-
     }
+
+    public abstract int getAmountColumnIndex();
 
     void JButtonDebit_actionPerformed(java.awt.event.ActionEvent event)
     {
@@ -235,12 +240,15 @@ public abstract class MainWindow extends javax.swing.JFrame{
             wd.setBounds(430, 15, 275, 140);
             wd.show();
 
+            int amountColumnIndex = getAmountColumnIndex();
+
             // compute new amount
             long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
+
+            String samount = (String)model.getValueAt(selection, amountColumnIndex);
             long currentamount = Long.parseLong(samount);
             long newamount=currentamount-deposit;
-            model.setValueAt(String.valueOf(newamount),selection, 5);
+            model.setValueAt(String.valueOf(newamount),selection, amountColumnIndex);
             if (newamount <0){
                 JOptionPane.showMessageDialog(this, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
             }
@@ -249,7 +257,7 @@ public abstract class MainWindow extends javax.swing.JFrame{
 
     public void populateTable(String[] data){
         this.getTableColumns();
-        for (int i = 0; i < this.getTableColumns().size() - 1; i++) {
+        for (int i = 0; i < this.getTableColumns().size() ; i++) {
             rowdata[i] = data[i];
         }
 

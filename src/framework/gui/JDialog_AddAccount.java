@@ -99,6 +99,7 @@ public abstract class JDialog_AddAccount extends javax.swing.JDialog {
         parentForm.city=JTextField_CT.getText();
         parentForm.zip=JTextField_ZIP.getText();
         parentForm.state=JTextField_ST.getText();
+        parentForm.email = JTextField_EM.getText();
 
         supplementJButtonOkayAP();
 

@@ -36,7 +36,7 @@ public abstract class Owner {
     }
 
     public static String getNextAccountNumber(){
-        return accountNumPrexi + " " + accounts.size() + 1;
+        return accountNumPrexi + " " + (accounts.size() + 1);
     }
 
     public static List<IAccount> getAccounts() {

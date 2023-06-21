@@ -1,5 +1,6 @@
 package banking;
 
+import banking.account.BankController;
 import banking.view.BankWindow;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class Bank {
             }
 
             // Create a new instance of our application's frame, and make it visible.
-            (new BankWindow()).setVisible(true);
+            (new BankWindow(new BankController())).setVisible(true);
         } catch (Throwable t) {
             t.printStackTrace();
             // Ensure the application exits with an error condition.
