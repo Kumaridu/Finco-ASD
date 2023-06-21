@@ -72,9 +72,10 @@ public abstract class MainWindow extends javax.swing.JFrame{
     }
 
     private void setUpDefaultButtons(){
+        this.setupInterestButton();
         this.setupCreditButton();
         this.setupDebitButton();
-        this.setupInterestButton();
+        this.setupGenerateReportButton();
         this.setupExitButton();
     }
 
@@ -87,9 +88,17 @@ public abstract class MainWindow extends javax.swing.JFrame{
     private void setupExitButton(){
         JButton_Exit.setText("Exit");
         JPanel1.add(JButton_Exit);
-        JButton_Exit.setBounds(468,248,96,30);
+        JButton_Exit.setBounds(468,300,96,30);
         JButton_Exit.addActionListener(lSymAction);
     }
+
+    private void setupGenerateReportButton(){
+        JButton_GenerateReport.setText("Report");
+        JPanel1.add(JButton_GenerateReport);
+        JButton_GenerateReport.setBounds(468,220,96,30);
+        JButton_GenerateReport.addActionListener(lSymAction);
+    }
+
     private void setupCreditButton(){
         JButton_Credit.setText(this.getCreditButtonTitle());
         JPanel1.add(JButton_Credit);
@@ -106,18 +115,30 @@ public abstract class MainWindow extends javax.swing.JFrame{
     }
 
     public abstract String getDebitButtonTitle();
+    public String getReportString(){
+        List<IAccount> accountList = BaseController.allAccounts();
+
+        StringBuilder builder = new StringBuilder("");
+        for (IAccount account : accountList){
+            builder.append(account.getAccountOwner().toString()).append("\n").append(account.toString()).append("\n");
+            builder.append("-------------------------------------------");
+        }
+
+        return builder.toString();
+    }
 
     javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
     javax.swing.JButton JButton_Exit = new javax.swing.JButton();
     javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
     javax.swing.JButton JButton_Credit = new javax.swing.JButton();
     javax.swing.JButton JButton_Debit = new javax.swing.JButton();
+    javax.swing.JButton JButton_GenerateReport = new javax.swing.JButton();
 
     void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
     {
         JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
         BaseController.applyInterest();
-        List<IAccount> accounts = BaseController.allCounts();
+        List<IAccount> accounts = BaseController.allAccounts();
         System.out.println(accounts.toString());
         updateAcountsBalances(accounts);
     }
@@ -171,6 +192,11 @@ public abstract class MainWindow extends javax.swing.JFrame{
 
             if (object == JButton_Debit){
                 JButtonDebit_actionPerformed(event);
+                return;
+            }
+
+            if (object == JButton_GenerateReport){
+                JButtonGenerateReport_actionPerformed(event);
                 return;
             }
 
@@ -269,6 +295,14 @@ public abstract class MainWindow extends javax.swing.JFrame{
             Response response = BaseController.debit(accnr, deposit);
             JOptionPane.showMessageDialog(this, response.getMessage());
         }
+    }
+
+    void JButtonGenerateReport_actionPerformed(java.awt.event.ActionEvent event)
+    {
+        JDialog_GenerateReport generateReport = new JDialog_GenerateReport(this, "Generate Account Report");
+        generateReport.setBounds(450, 20, 400, 350);
+        generateReport.show();
+
     }
 
     public void populateTable(String[] data){

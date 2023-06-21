@@ -18,7 +18,7 @@ public class BaseController {
     public static void applyInterest(){
         Owner.notifyApplyInterest();
     }
-    public static List<IAccount> allCounts(){
+    public static List<IAccount> allAccounts(){
         return Owner.getAccounts();
     }
 }

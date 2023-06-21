@@ -67,4 +67,9 @@ public abstract class Party implements IParty {
     public String getEmail() {
         return email;
     }
+
+    @Override
+    public String toString() {
+        return "Name= " + this.getName() +"\n" + "Address= " + this.getCity() + ", " + this.getZip() + "\n";
+    }
 }
