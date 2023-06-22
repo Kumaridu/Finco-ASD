@@ -1,4 +1,4 @@
-package creditcard;
+package creditcard.models;
 
 import framework.party.IParty;
 

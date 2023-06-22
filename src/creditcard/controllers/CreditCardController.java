@@ -1,11 +1,8 @@
 package creditcard.controllers;
 
-import creditcard.CCAccount;
-import creditcard.CCAccountCreator;
-import framework.account.Account;
+import creditcard.models.CCAccountCreator;
 import framework.owner.Owner;
 import framework.party.IParty;
-import framework.party.Organization;
 import framework.party.PartyCreator;
 
 
