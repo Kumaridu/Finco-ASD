@@ -59,7 +59,7 @@ public class BankWindow extends MainWindow {
 
     @Override
     public int getAmountColumnIndex() {
-        return 8;
+        return this.getTableColumns().size() - 1;
     }
 
     @Override
@@ -69,7 +69,10 @@ public class BankWindow extends MainWindow {
             list.add("Name");
             list.add("Street");
             list.add("City");
+            list.add("State");
             list.add("Zip");
+            list.add("P/C");
+            list.add("Ch/s");
             list.add("Amount");
 
             return list;

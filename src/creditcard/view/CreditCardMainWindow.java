@@ -51,7 +51,7 @@ public class CreditCardMainWindow extends MainWindow {
 
     @Override
     public int getAmountColumnIndex() {
-        return 4;
+        return this.getTableColumns().size() - 1;
     }
 
     @Override
