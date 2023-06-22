@@ -1,7 +1,7 @@
 package creditcard.models;
 
 import framework.account.Account;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 import framework.transaction.ITransaction;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ public abstract class CCAccount extends Account {
     private LocalDate expDate;
     private Double lastMonthBalance;
 
-    public CCAccount(IParty accountOwner) {
+    public CCAccount(ICustomer accountOwner) {
         super(0.0, accountOwner);
         this.expDate  = LocalDate.now().plusYears(4);
         this.lastMonthBalance  = 0.0;

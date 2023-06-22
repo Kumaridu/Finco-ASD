@@ -1,10 +1,10 @@
 package banking.models;
 
 import framework.account.IAccount;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class AccountCreator {
-    public static IAccount createAccount(Double balance, IParty accountOwner, String type){
+    public static IAccount createAccount(Double balance, ICustomer accountOwner, String type){
         if (type != null && type.equals("S")){
             System.out.println("Creating a saving account");
             return new Saving(balance, accountOwner);

@@ -1,8 +1,8 @@
 package banking.models;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class Saving extends BankAccount {
-    public Saving(Double balance, IParty accountOwner) {
+    public Saving(Double balance, ICustomer accountOwner) {
         super(balance, accountOwner);
     }
     @Override

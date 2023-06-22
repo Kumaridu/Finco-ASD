@@ -1,11 +1,11 @@
 package creditcard.models;
 
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class Silver extends CCAccount {
     private Double mi=0.16;
     private Double mp=0.18;
-    public Silver(IParty accountOwner) {
+    public Silver(ICustomer accountOwner) {
         super(accountOwner);
     }
 

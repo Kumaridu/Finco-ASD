@@ -1,4 +1,4 @@
-package framework.party;
+package framework.customer;
 
 import framework.account.IAccount;
 import framework.transaction.ITransaction;
@@ -6,7 +6,7 @@ import framework.transaction.ITransaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Party implements IParty {
+public abstract class Customer implements ICustomer {
     private String name;
     private String street;
     private String city;
@@ -23,7 +23,7 @@ public abstract class Party implements IParty {
      * @param zip
      * @param email
      */
-    public Party(String name, String street, String city, String zip, String email) {
+    public Customer(String name, String street, String city, String zip, String email) {
         this.name = name;
         this.street = street;
         this.city = city;

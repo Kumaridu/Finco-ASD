@@ -2,8 +2,8 @@ package banking.controllers;
 
 import banking.models.AccountCreator;
 import framework.owner.Owner;
-import framework.party.IParty;
-import framework.party.PartyCreator;
+import framework.customer.ICustomer;
+import framework.customer.CustomerCreator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +17,7 @@ public class BankController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateOfBirth = LocalDate.parse(dateOfBirthSt, formatter);
-        IParty person = PartyCreator.createParty(clientName, street, city, zip, email, dateOfBirth);
+        ICustomer person = CustomerCreator.createParty(clientName, street, city, zip, email, dateOfBirth);
 
         AccountCreator.createAccount(0.0, person, accountType);
 
@@ -29,7 +29,7 @@ public class BankController {
 
         System.out.println("Adding new account");
 
-        IParty party = PartyCreator.createParty(clientName, street, city, zip, email, noOfEmp);
+        ICustomer party = CustomerCreator.createParty(clientName, street, city, zip, email, noOfEmp);
         AccountCreator.createAccount(0.0, party, accountType);
 
         System.out.println("After adding new account, owner account size: " + Owner.getAccounts().size());

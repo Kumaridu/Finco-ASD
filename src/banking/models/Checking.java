@@ -1,9 +1,9 @@
 package banking.models;
 
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class Checking extends BankAccount {
-    public Checking(Double balance, IParty accountOwner) {
+    public Checking(Double balance, ICustomer accountOwner) {
         super(balance, accountOwner);
     }
 

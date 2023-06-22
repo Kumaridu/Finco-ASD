@@ -1,11 +1,10 @@
 package framework.controllers;
 
-import banking.models.AccountCreator;
-import framework.ConcAccount;
+import framework.account.ConcAccount;
 import framework.account.IAccount;
 import framework.owner.Owner;
-import framework.party.IParty;
-import framework.party.PartyCreator;
+import framework.customer.ICustomer;
+import framework.customer.CustomerCreator;
 import framework.utilities.Response;
 
 import java.time.LocalDate;
@@ -34,7 +33,7 @@ public class BaseController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateOfBirth = LocalDate.parse(dateOfBirthSt, formatter);
-        IParty person = PartyCreator.createParty(clientName, street, city, zip, email, dateOfBirth);
+        ICustomer person = CustomerCreator.createParty(clientName, street, city, zip, email, dateOfBirth);
 
         ConcAccount acc = new ConcAccount(0.0, person);
 

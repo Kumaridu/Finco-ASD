@@ -1,11 +1,11 @@
 package creditcard.models;
 
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class Copper extends CCAccount {
     Double mi = 0.20;
     Double mp = 0.24;
-    public Copper(IParty accountOwner) {
+    public Copper(ICustomer accountOwner) {
         super(accountOwner);
     }
 

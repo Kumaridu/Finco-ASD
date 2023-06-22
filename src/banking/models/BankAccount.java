@@ -1,13 +1,13 @@
 package banking.models;
 
 import framework.account.Account;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public abstract class BankAccount extends Account {
     public static Double SAVING_INTEREST_RATE = 0.34;
     public static Double CHECKING_INTEREST_RATE = 0.3232;
 
-    public BankAccount(Double balance, IParty accountOwner) {
+    public BankAccount(Double balance, ICustomer accountOwner) {
         super(balance, accountOwner);
     }
 

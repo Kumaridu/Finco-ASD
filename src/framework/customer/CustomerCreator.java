@@ -1,7 +1,7 @@
-package framework.party;
+package framework.customer;
 import java.time.LocalDate;
 
-public class PartyCreator {
+public class CustomerCreator {
 
     /**
      * Creates a new IPerson object
@@ -28,9 +28,9 @@ public class PartyCreator {
      * @param email
      * @return
      */
-    public static IOrganization createParty(String name, String street, String city, String zip, String email, int numOfEmployees) {
+    public static ICompany createParty(String name, String street, String city, String zip, String email, int numOfEmployees) {
         System.out.println("Creating an organization.");
-        return new Organization(name, street, city, zip, email, numOfEmployees);
+        return new Company(name, street, city, zip, email, numOfEmployees);
     }
 
     public static IPerson createParty(String name, String street, String city, String zip, String email){

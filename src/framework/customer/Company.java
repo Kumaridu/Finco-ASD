@@ -1,10 +1,10 @@
-package framework.party;
+package framework.customer;
 import framework.owner.Owner;
 import framework.utilities.Email;
 import framework.utilities.Utility;
 import framework.transaction.ITransaction;
 
-public class Organization extends Party implements IOrganization {
+public class Company extends Customer implements ICompany {
     private int numOfEmployees;
 
     /**
@@ -16,7 +16,7 @@ public class Organization extends Party implements IOrganization {
      * @param email
      * @param numOfEmployees
      */
-    public Organization(String name, String street, String city, String zip, String email, int numOfEmployees) {
+    public Company(String name, String street, String city, String zip, String email, int numOfEmployees) {
         super(name, street, city, zip, email);
         this.numOfEmployees = numOfEmployees;
     }

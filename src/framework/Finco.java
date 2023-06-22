@@ -17,7 +17,6 @@ public class Finco {
             /**
              * Load Account Manager Window(View)
              */
-//            (new AppWindow()).setVisible(true);
             appWindow.setVisible(true);
         } catch (Throwable t) {
             t.printStackTrace();

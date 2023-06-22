@@ -2,8 +2,8 @@ package creditcard.controllers;
 
 import creditcard.models.CCAccountCreator;
 import framework.owner.Owner;
-import framework.party.IParty;
-import framework.party.PartyCreator;
+import framework.customer.ICustomer;
+import framework.customer.CustomerCreator;
 
 
 
@@ -14,7 +14,7 @@ public class CreditCardController {
 
 
         System.out.println("Creating a new credit account type: " + accountType);
-        IParty person = PartyCreator.createParty(name, street, city, zip, email);
+        ICustomer person = CustomerCreator.createParty(name, street, city, zip, email);
         CCAccountCreator.createAccount(person, accountType);
         System.out.println("After adding new account, owner account size: " + Owner.getAccounts().size());
     }

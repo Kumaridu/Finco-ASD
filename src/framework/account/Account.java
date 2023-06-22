@@ -1,7 +1,7 @@
 package framework.account;
 
 import framework.owner.Owner;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 import framework.transaction.ITransaction;
 import framework.transaction.Transaction;
 import framework.utilities.Response;
@@ -12,11 +12,11 @@ import java.util.function.Predicate;
 
 public abstract class Account implements IAccount {
     private Double balance = 0.0;
-    private final IParty accountOwner;
+    private final ICustomer accountOwner;
     private final String accountNum;
     private final List<ITransaction> transactions = new ArrayList<>();
 
-    public Account(Double balance, IParty accountOwner) {
+    public Account(Double balance, ICustomer accountOwner) {
         try {
             this.accountNum = Owner.getNextAccountNumber();
             this.accountOwner = accountOwner;
@@ -60,7 +60,7 @@ public abstract class Account implements IAccount {
     @Override
     public abstract void addInterest();
 
-    public IParty getAccountOwner() {
+    public ICustomer getAccountOwner() {
         return accountOwner;
     }
 

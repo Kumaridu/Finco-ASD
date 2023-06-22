@@ -1,10 +1,10 @@
 package creditcard.models;
 
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class CCAccountCreator {
 
-    public static CCAccount createAccount(IParty accountOwner, String accountType) {
+    public static CCAccount createAccount(ICustomer accountOwner, String accountType) {
         if(accountType.equals("Gold")) {
             return new Gold(accountOwner);
         }

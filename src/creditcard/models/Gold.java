@@ -1,12 +1,12 @@
 package creditcard.models;
 
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class Gold extends CCAccount {
     private Double mi=0.25;
     private Double mp=0.25;
 
-    public Gold(IParty accountOwner) {
+    public Gold(ICustomer accountOwner) {
         super(accountOwner);
     }
 

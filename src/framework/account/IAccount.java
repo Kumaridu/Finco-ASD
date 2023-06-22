@@ -1,5 +1,5 @@
 package framework.account;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 import framework.transaction.ITransaction;
 import framework.utilities.Response;
 
@@ -10,7 +10,7 @@ public interface IAccount {
     public Response addTransaction(String name, Double amount);
     public void addInterest();
     public String getAccountNum();
-    public IParty getAccountOwner();
+    public ICustomer getAccountOwner();
     public List<ITransaction> transactions();
     public List<ITransaction> credits();
     public List<ITransaction> debits();

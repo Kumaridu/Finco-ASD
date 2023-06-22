@@ -1,9 +1,9 @@
-package framework;
+package framework.account;
 import framework.account.Account;
-import framework.party.IParty;
+import framework.customer.ICustomer;
 
 public class ConcAccount extends Account {
-    public ConcAccount(Double balance, IParty party) {
+    public ConcAccount(Double balance, ICustomer party) {
         super(balance, party);
     }
 

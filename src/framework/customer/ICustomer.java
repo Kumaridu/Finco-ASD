@@ -1,9 +1,9 @@
-package framework.party;
+package framework.customer;
 
 import framework.account.IAccount;
 import framework.transaction.ITransaction;
 
-public interface IParty {
+public interface ICustomer {
     void addAccount(IAccount account);
     void removeAccount(IAccount account);
     void sendEmail(ITransaction transaction);

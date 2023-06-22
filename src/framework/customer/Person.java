@@ -1,11 +1,11 @@
-package framework.party;
+package framework.customer;
 import framework.owner.Owner;
 import framework.transaction.ITransaction;
 import framework.utilities.Email;
 
 import java.time.LocalDate;
 
-public class Person extends Party implements IPerson {
+public class Person extends Customer implements IPerson {
     private LocalDate birthDate;
 
     /**
