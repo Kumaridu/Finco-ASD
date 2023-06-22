@@ -13,10 +13,7 @@ public class CCAccountCreator {
             return new Silver(accountOwner);
         }
 
-        if (accountType.equals("Copper")) {
-            return new Copper(accountOwner);
-        }
+        return new Copper(accountOwner);
 
-        return null;
     }
 }

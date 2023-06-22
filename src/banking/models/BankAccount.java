@@ -16,7 +16,9 @@ public abstract class BankAccount extends Account {
     @Override
     public void addInterest() {
         Double balance = getBalance();
+
         double interest = getInterestRate() * balance;
+        this.addTransaction("Interest", interest);
         balance += interest;
         setBalance(balance);
     }

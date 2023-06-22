@@ -1,9 +1,12 @@
 package framework;
+import framework.gui.MainWindow;
 import framework.view.AppWindow;
 
 import javax.swing.*;
 
 public class Finco {
+    private static MainWindow appWindow;
+
     public static void main(String[] args) {
         try {
             try {
@@ -14,11 +17,16 @@ public class Finco {
             /**
              * Load Account Manager Window(View)
              */
-            (new AppWindow()).setVisible(true);
+//            (new AppWindow()).setVisible(true);
+            appWindow.setVisible(true);
         } catch (Throwable t) {
             t.printStackTrace();
             // Ensure the application exits with an error condition.
             System.exit(1);
         }
+    }
+
+    public static void setAppWindow(MainWindow appWindow1) {
+        appWindow = appWindow1;
     }
 }
