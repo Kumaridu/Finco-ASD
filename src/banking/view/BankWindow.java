@@ -69,10 +69,7 @@ public class BankWindow extends MainWindow {
             list.add("Name");
             list.add("Street");
             list.add("City");
-            list.add("State");
             list.add("Zip");
-            list.add("P/C");
-            list.add("Ch/S");
             list.add("Amount");
 
             return list;

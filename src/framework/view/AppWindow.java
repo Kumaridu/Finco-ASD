@@ -1,11 +1,11 @@
 package framework.view;
 
+import framework.controllers.BaseController;
 import framework.gui.MainWindow;
 import java.awt.event.ActionEvent;
 
 public class AppWindow extends MainWindow {
-    javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
-    javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
+    javax.swing.JButton JButton_AddAccount = new javax.swing.JButton();
 
     public AppWindow(){
         super("Framework Account Application");
@@ -14,18 +14,12 @@ public class AppWindow extends MainWindow {
     }
 
     private void setUpAddAccountsButtons(){
-        JButton_PerAC.setText("Add personal account");
-        this.addExtraButton(JButton_PerAC);
-        JButton_PerAC.setBounds(24,20,192,33);
-        JButton_PerAC.setActionCommand("jbutton");
+        JButton_AddAccount.setText("Add Account");
+        this.addExtraButton(JButton_AddAccount);
+        JButton_AddAccount.setBounds(24,20,192,33);
+        JButton_AddAccount.setActionCommand("jbutton");
 
-        JButton_CompAC.setText("Add company account");
-        JButton_CompAC.setActionCommand("jbutton");
-        this.addExtraButton(JButton_CompAC);
-        JButton_CompAC.setBounds(240,20,190,33);
-
-        JButton_PerAC.addActionListener(lSymAction);
-        JButton_CompAC.addActionListener(lSymAction);
+        JButton_AddAccount.addActionListener(lSymAction);
     }
 
 
@@ -43,51 +37,31 @@ public class AppWindow extends MainWindow {
     public void subActionsPerformed(ActionEvent event) {
         Object object = event.getSource();
 
-        if (object == JButton_PerAC){
-            JButtonPerAC_actionPerformed(event);
-            return;
-        }
-
-        if (object == JButton_CompAC){
-            JButtonCompAC_actionPerformed(event);
-            return;
+        if (object == JButton_AddAccount){
+            JButtonAddAccount_actionPerformed(event);
         }
     }
 
     @Override
     public int getAmountColumnIndex() {
-        return 7;
+        return this.getTableColumns().size() - 1;
     }
 
-    void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
+    void JButtonAddAccount_actionPerformed(java.awt.event.ActionEvent event)
     {
         /**
          * Open customized Add Person Aaccount Dialog
          */
-        JDialog_AddPAcc pac = new JDialog_AddPAcc(this);
+        JDialog_AddAccountDemo pac = new JDialog_AddAccountDemo(this);
         pac.setBounds(450, 20, 300, 330);
         pac.show();
 
-        if (newaccount){
-            String[] data = {accountnr, clientName, city, "P", accountType, "0"};
+        if (newaccount) {
+            String dateOfBirthSt = pac.JTextField_BD.getText();
+            String[] data = {accountnr, clientName, street , city, state, zip, "0"};
+            BaseController.createAccount(clientName, street, city, zip, email, dateOfBirthSt, accountType);
             this.populateTable(data);
         }
     }
 
-    void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
-    {
-
-        /**
-         * Open customized Add Company Account Dialog
-         */
-        JDialog_AddCompAcc pac = new JDialog_AddCompAcc(this);
-        pac.setBounds(450, 20, 300, 330);
-        pac.show();
-
-        if (newaccount){
-            String[] data = {accountnr, clientName, city, "P", accountType, "0"};
-            this.populateTable(data);
-        }
-
-    }
 }
