@@ -152,8 +152,8 @@ public abstract class MainWindow extends javax.swing.JFrame{
         list.add("Name");
         list.add("Street");
         list.add("City");
-        list.add("Zip");
         list.add("State");
+        list.add("Zip");
         list.add("Amount");
 
         return list;

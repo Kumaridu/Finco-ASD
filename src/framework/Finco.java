@@ -3,7 +3,7 @@ import framework.view.AppWindow;
 
 import javax.swing.*;
 
-public class Main {
+public class Finco {
     public static void main(String[] args) {
         try {
             try {
